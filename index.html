@@ -1,1131 +1,1090 @@
-/* ══════════════════════════════════════════════════════
-   SINK — style.css
-   Premium Climate-Tech Landing Page
-   Palette: #08131F · #239B6E · #EFE8DC · #FFFFFF
-══════════════════════════════════════════════════════ */
-
-/* ─── 1. Custom Properties ─────────────────────────── */
-:root {
-  --c-dark:      #08131F;
-  --c-dark-mid:  #0D3B66;
-  --c-green:     #239B6E;
-  --c-green-lt:  #5CBF3A;
-  --c-sand:      #EFE8DC;
-  --c-white:     #FFFFFF;
-  --c-text:      #1a2a1a;
-  --c-muted:     #697369;
-
-  --section-v: 130px;
-  --cont-max:  1280px;
-  --gutter:    80px;
-
-  --f-head: 'Outfit', sans-serif;
-  --f-body: 'Inter', sans-serif;
-
-  --r-card: 24px;
-  --r-pill: 100px;
-
-  --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* ─── 2. Reset & Base ──────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: var(--f-body);
-  color: var(--c-text);
-  background: var(--c-white);
-  overflow-x: hidden;
-  line-height: 1.6;
-}
-
-img, svg { display: block; max-width: 100%; }
-a { text-decoration: none; color: inherit; }
-ul, ol { list-style: none; }
-button { cursor: pointer; font: inherit; border: none; background: none; }
-
-/* ─── 3. Typography ────────────────────────────────── */
-h1, h2, h3 { font-family: var(--f-head); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; }
-h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
-h2 { font-size: clamp(2rem, 4vw, 3.6rem); }
-h3 { font-size: clamp(1rem, 1.4vw, 1.2rem); font-weight: 700; letter-spacing: -0.015em; }
-
-/* ─── 4. Layout ────────────────────────────────────── */
-.container {
-  width: 100%;
-  max-width: calc(var(--cont-max) + var(--gutter) * 2);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-}
-
-.section          { padding: var(--section-v) 0; }
-.section--dark    { background: var(--c-dark); }
-.section--sand    { background: var(--c-sand); }
-
-/* ─── 5. Navigation ────────────────────────────────── */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 900;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  transition: background 0.5s var(--ease), border-color 0.5s var(--ease);
-}
-
-.nav.scrolled {
-  background: rgba(8, 19, 31, 0.90);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.nav-inner {
-  width: 100%;
-  max-width: calc(var(--cont-max) + var(--gutter) * 2);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-logo-svg { width: 76px; height: auto; display: block; }
-.nav-logo-img  { height: 100px; width: 100px; display: block; object-fit: contain; }
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 2.25rem;
-}
-
-.nav-link {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.65);
-  letter-spacing: 0.01em;
-  transition: color 0.2s;
-}
-.nav-link:hover { color: #fff; }
-
-.nav-cta-link {
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--r-pill);
-  border: 1px solid rgba(255,255,255,0.22);
-  color: #fff !important;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: background 0.25s var(--ease), border-color 0.25s;
-}
-.nav-cta-link:hover {
-  background: var(--c-green);
-  border-color: var(--c-green);
-}
-
-.nav-burger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 28px;
-  height: 28px;
-}
-.nav-burger span {
-  display: block;
-  height: 2px;
-  width: 100%;
-  background: #fff;
-  border-radius: 2px;
-  transition: transform 0.35s var(--ease), opacity 0.35s;
-}
-.nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* ─── 6. Buttons ───────────────────────────────────── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.875rem 2rem;
-  border-radius: var(--r-pill);
-  font-family: var(--f-body);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  transition: all 0.25s var(--ease);
-  cursor: pointer;
-  border: none;
-  white-space: nowrap;
-}
-.btn--primary {
-  background: var(--c-green);
-  color: #fff;
-}
-.btn--primary:hover {
-  background: #1c8560;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 28px rgba(35,155,110,0.38);
-}
-.btn--ghost {
-  background: rgba(255,255,255,0.09);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.18);
-  backdrop-filter: blur(6px);
-}
-.btn--ghost:hover {
-  background: rgba(255,255,255,0.16);
-  border-color: rgba(255,255,255,0.36);
-}
-.btn--outline {
-  background: transparent;
-  color: #fff;
-  border: 1.5px solid rgba(255,255,255,0.32);
-}
-.btn--outline:hover {
-  border-color: rgba(255,255,255,0.75);
-  background: rgba(255,255,255,0.05);
-}
-.btn--lg { padding: 1.1rem 2.6rem; font-size: 1rem; }
-
-/* ─── 7. Section Header ────────────────────────────── */
-.section-header {
-  text-align: center;
-  max-width: 680px;
-  margin: 0 auto 5rem;
-}
-
-.label {
-  display: inline-block;
-  font-family: var(--f-body);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--c-green);
-  margin-bottom: 1.1rem;
-}
-
-h2.light, .section-header h2.light { color: #fff; }
-.section-lead {
-  font-size: 1.05rem;
-  color: var(--c-muted);
-  line-height: 1.8;
-  margin-top: 1.1rem;
-}
-.section-lead.light { color: rgba(255,255,255,0.55); }
-
-/* ─── 8. Scroll Reveal ─────────────────────────────── */
-[class^="reveal-"], [class*=" reveal-"] {
-  opacity: 0;
-  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
-  transition-delay: var(--delay, 0s);
-}
-.reveal-up    { transform: translateY(44px); }
-.reveal-left  { transform: translateX(-44px); }
-.reveal-right { transform: translateX(44px); }
-
-.is-revealed {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* ══════════════════════════════════════════════════════
-   9. HERO
-══════════════════════════════════════════════════════ */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: var(--c-dark);
-}
-
-#heroCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.hero-glow {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(110px);
-}
-.hero-glow--1 {
-  width: 800px; height: 800px;
-  top: -280px; left: -220px;
-  background: radial-gradient(circle, rgba(13,59,102,0.55) 0%, transparent 70%);
-  animation: glowFloat 9s ease-in-out infinite;
-}
-.hero-glow--2 {
-  width: 550px; height: 550px;
-  bottom: -120px; right: -80px;
-  background: radial-gradient(circle, rgba(35,155,110,0.22) 0%, transparent 70%);
-  animation: glowFloat 12s ease-in-out infinite reverse;
-}
-@keyframes glowFloat {
-  0%, 100% { transform: scale(1)   translateY(0); }
-  50%       { transform: scale(1.1) translateY(-20px); }
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding: 0 var(--gutter);
-  padding-top: 72px;
-  max-width: 1060px;
-}
-
-.hero-brand { margin-bottom: 2.5rem; }
-
-.hero-logo-img {
-  max-width: clamp(260px, 45vw, 520px);
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
-  display: block;
-}
-
-.hero-wordmark {
-  height: clamp(68px, 11vw, 120px);
-  width: auto;
-  margin: 0 auto 1rem;
-}
-
-.hero-tagline {
-  font-family: var(--f-body);
-  font-size: 0.78rem;
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.38);
-}
-
-.hero-headline {
-  font-size: clamp(2rem, 4.2vw, 3.8rem);
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.15;
-  letter-spacing: -0.035em;
-  margin-bottom: 1.5rem;
-}
-
-.hero-sub {
-  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-  color: rgba(255,255,255,0.52);
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Scroll cue */
-.scroll-cue {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--f-body);
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  pointer-events: none;
-}
-.scroll-cue__dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--c-green);
-  animation: bounceDot 1.9s ease-in-out infinite;
-}
-@keyframes bounceDot {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  50%       { transform: translateY(9px); opacity: 0.35; }
-}
-
-/* SVG wave bottom */
-.hero-wave {
-  position: absolute;
-  bottom: -2px; left: 0; right: 0;
-  z-index: 3;
-  line-height: 0;
-}
-.hero-wave svg { width: 100%; display: block; }
-
-/* ══════════════════════════════════════════════════════
-   10. PROBLEM
-══════════════════════════════════════════════════════ */
-
-/* Stats row */
-.stat-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-  margin-bottom: 5rem;
-}
-
-.stat-card {
-  padding: 2rem 1.75rem;
-  border: 1px solid rgba(0,0,0,0.07);
-  border-radius: var(--r-card);
-  background: #fff;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
-}
-.stat-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-}
-.stat-card__num {
-  display: block;
-  font-family: var(--f-head);
-  font-size: clamp(1.9rem, 3vw, 2.8rem);
-  font-weight: 900;
-  color: var(--c-dark);
-  letter-spacing: -0.05em;
-  line-height: 1;
-}
-.stat-card__unit {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-green);
-  margin: 0.5rem 0 0.9rem;
-}
-.stat-card__desc { font-size: 0.875rem; color: var(--c-muted); line-height: 1.6; }
-
-/* Problem 2-col */
-.problem-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
-}
-
-.problem-illustration {
-  border-radius: 20px;
-  overflow: hidden;
-  width: 100%;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.18);
-  aspect-ratio: 4/3;
-}
-
-.problem-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-.problem-points { display: flex; flex-direction: column; gap: 2.25rem; }
-
-.problem-point {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 1.25rem;
-  align-items: flex-start;
-}
-.pp-icon { width: 44px; height: 44px; flex-shrink: 0; margin-top: 1px; }
-.pp-text h3 { font-size: 1rem; color: var(--c-dark); margin-bottom: 0.4rem; }
-.pp-text p  { font-size: 0.875rem; color: var(--c-muted); line-height: 1.7; }
-
-/* ══════════════════════════════════════════════════════
-   11. SOLUTION
-══════════════════════════════════════════════════════ */
-.process-layout {
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 6rem;
-  align-items: center;
-}
-
-.process-steps { display: flex; flex-direction: column; }
-
-.process-step {
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 1.5rem;
-  position: relative;
-  padding-bottom: 2.25rem;
-  cursor: default;
-}
-.process-step:last-child { padding-bottom: 0; }
-
-/* Dotted connector line */
-.process-step:not(:last-child)::before {
-  content: '';
-  position: absolute;
-  left: 30px;
-  top: 48px;
-  bottom: 0;
-  width: 2px;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(35,155,110,0.35) 0, rgba(35,155,110,0.35) 4px,
-    transparent 4px, transparent 11px
-  );
-}
-
-.ps-marker {
-  width: 46px; height: 46px;
-  border-radius: 50%;
-  border: 2px solid var(--c-green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.3s, border-color 0.3s;
-  position: relative;
-  z-index: 1;
-}
-.ps-marker span {
-  font-family: var(--f-head);
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--c-green);
-  letter-spacing: 0.05em;
-  transition: color 0.3s;
-}
-
-.process-step:hover .ps-marker,
-.process-step.ps-active .ps-marker {
-  background: var(--c-green);
-}
-.process-step:hover .ps-marker span,
-.process-step.ps-active .ps-marker span {
-  color: #fff;
-}
-
-.ps-body { padding-top: 0.55rem; }
-.ps-body h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 0.35rem;
-}
-.ps-body p { font-size: 0.875rem; color: rgba(255,255,255,0.48); line-height: 1.7; }
-
-/* Circular diagram */
-.process-diagram {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.circ-svg { width: 100%; max-width: 420px; }
-
-.circ-arc {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: arcSpin 22s linear infinite;
-}
-@keyframes arcSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-/* ══════════════════════════════════════════════════════
-   12. TECHNOLOGY
-══════════════════════════════════════════════════════ */
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.tech-card {
-  position: relative;
-  background: #fff;
-  border-radius: var(--r-card);
-  padding: 2.5rem 2.25rem;
-  border: 1px solid rgba(0,0,0,0.07);
-  box-shadow: 0 2px 14px rgba(0,0,0,0.04);
-  overflow: hidden;
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
-}
-.tech-card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 24px 48px rgba(0,0,0,0.09);
-}
-.tech-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--c-green), var(--c-green-lt));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.45s var(--ease);
-}
-.tech-card:hover::after { transform: scaleX(1); }
-
-.tc-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 1.75rem;
-}
-.tc-icon { width: 56px; height: 56px; flex-shrink: 0; }
-.tc-num {
-  font-family: var(--f-head);
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: rgba(0,0,0,0.055);
-  line-height: 1;
-  letter-spacing: -0.05em;
-}
-
-.tech-card h3 { color: var(--c-dark); margin-bottom: 0.7rem; }
-.tech-card p  { font-size: 0.875rem; color: var(--c-muted); line-height: 1.75; }
-
-/* ══════════════════════════════════════════════════════
-   13. APPLICATIONS
-══════════════════════════════════════════════════════ */
-.apps-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.app-card {
-  border-radius: var(--r-card);
-  overflow: hidden;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.07);
-  box-shadow: 0 2px 14px rgba(0,0,0,0.04);
-  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
-}
-.app-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 28px 56px rgba(0,0,0,0.1);
-}
-.ac-visual {
-  aspect-ratio: 16/10;
-  overflow: hidden;
-}
-.ac-visual svg {
-  width: 100%; height: 100%;
-  transition: transform 0.5s var(--ease);
-}
-.app-card:hover .ac-visual svg { transform: scale(1.04); }
-
-.ac-body { padding: 1.75rem; }
-.ac-body h3 { color: var(--c-dark); margin-bottom: 0.55rem; }
-.ac-body p  { font-size: 0.875rem; color: var(--c-muted); line-height: 1.7; }
-
-/* ══════════════════════════════════════════════════════
-   14. IMPACT
-══════════════════════════════════════════════════════ */
-.impact-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
-}
-
-.impact-cat {
-  border: 1.5px solid rgba(255,255,255,0.1);
-  border-radius: var(--r-card);
-  padding: 2.75rem 2.25rem;
-  transition: border-color 0.35s;
-}
-.impact-cat:hover { border-color: rgba(35,155,110,0.45); }
-
-.impact-cat__head {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 2.25rem;
-  padding-bottom: 1.75rem;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-.impact-cat__head svg { width: 34px; height: 34px; flex-shrink: 0; }
-.impact-cat__head h3  { font-size: 1.1rem; color: #fff; }
-
-.impact-metrics { display: flex; flex-direction: column; gap: 2rem; }
-
-.im-num {
-  font-family: var(--f-head);
-  font-size: clamp(2rem, 3vw, 2.8rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-.im-num .counter { color: var(--c-green); }
-
-/* Handle prefix like $ */
-.im-num[data-prefix]::before {
-  content: attr(data-prefix);
-  font-size: 0.6em;
-  color: rgba(255,255,255,0.4);
-  vertical-align: super;
-  margin-right: 2px;
-}
-
-.impact-metric > p { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
-
-/* ══════════════════════════════════════════════════════
-   15. ROADMAP
-══════════════════════════════════════════════════════ */
-.timeline {
-  position: relative;
-  max-width: 760px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.tl-item {
-  display: grid;
-  grid-template-columns: 72px 1px 1fr;
-  gap: 0 2rem;
-  padding-bottom: 2.75rem;
-}
-.tl-item:last-child { padding-bottom: 0; }
-
-.tl-year {
-  font-family: var(--f-head);
-  font-size: 1rem;
-  font-weight: 800;
-  text-align: right;
-  padding-top: 0;
-  letter-spacing: -0.03em;
-  color: var(--c-dark);
-  transition: color 0.3s;
-}
-.tl-item--done    .tl-year { color: var(--c-dark); }
-.tl-item--current .tl-year { color: var(--c-green); }
-.tl-item:not(.tl-item--done):not(.tl-item--current) .tl-year { color: rgba(0,0,0,0.28); }
-
-.tl-connector {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-.tl-connector::before {
-  content: '';
-  position: absolute;
-  top: 14px;
-  bottom: -2.75rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  background: rgba(0,0,0,0.1);
-}
-.tl-item:last-child .tl-connector::before { display: none; }
-
-.tl-dot {
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.12);
-  border: 2px solid rgba(0,0,0,0.15);
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-  margin-top: 3px;
-}
-.tl-item--done .tl-dot    { background: var(--c-green); border-color: var(--c-green); }
-.tl-item--current .tl-dot { background: var(--c-green); border-color: var(--c-green); }
-
-.tl-dot--pulse {
-  animation: tlPulse 2.2s ease-in-out infinite;
-}
-@keyframes tlPulse {
-  0%, 100% { box-shadow: 0 0 0 0   rgba(35,155,110,0.55); }
-  50%       { box-shadow: 0 0 0 10px rgba(35,155,110,0);   }
-}
-.tl-dot--future { background: transparent; border-color: rgba(0,0,0,0.12); }
-
-.tl-card {
-  background: #fff;
-  border: 1px solid rgba(0,0,0,0.07);
-  border-radius: var(--r-card);
-  padding: 1.75rem 2rem;
-  box-shadow: 0 2px 14px rgba(0,0,0,0.04);
-  margin-top: -4px;
-}
-.tl-card--current {
-  border-color: rgba(35,155,110,0.45);
-  box-shadow: 0 0 0 4px rgba(35,155,110,0.07), 0 2px 14px rgba(0,0,0,0.04);
-}
-
-.tl-badge {
-  display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.8rem;
-  border-radius: var(--r-pill);
-  margin-bottom: 0.85rem;
-}
-.tl-badge--done    { background: rgba(35,155,110,0.1); color: var(--c-green); }
-.tl-badge--current { background: var(--c-green); color: #fff; }
-.tl-badge--future  { background: rgba(0,0,0,0.05); color: var(--c-muted); }
-
-.tl-card h3 { color: var(--c-dark); margin-bottom: 0.4rem; }
-.tl-card p  { font-size: 0.875rem; color: var(--c-muted); line-height: 1.7; }
-
-/* ══════════════════════════════════════════════════════
-   16. FOUNDER
-══════════════════════════════════════════════════════ */
-.founder-layout {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 7rem;
-  align-items: start;
-}
-
-.portrait-wrap { position: relative; }
-
-.portrait-placeholder {
-  width: 100%;
-  aspect-ratio: 300/380;
-  border-radius: var(--r-card);
-  overflow: hidden;
-  overflow: hidden;
-  background: rgba(13,59,102,0.06);
-  border: 1px solid rgba(0,0,0,0.07);
-}
-.portrait-placeholder svg { width: 100%; height: 100%; }
-.founder-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-
-.portrait-badge {
-  position: absolute;
-  bottom: 1.5rem; left: 1.5rem;
-  background: var(--c-green);
-  color: #fff;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.5rem 1.2rem;
-  border-radius: var(--r-pill);
-  letter-spacing: 0.01em;
-}
-
-.founder-name {
-  font-family: var(--f-head);
-  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-  font-weight: 900;
-  color: var(--c-dark);
-  letter-spacing: -0.04em;
-  margin-bottom: 0.35rem;
-}
-.founder-role {
-  font-size: 0.9rem;
-  color: var(--c-green);
-  font-weight: 500;
-  margin-bottom: 1.75rem;
-  letter-spacing: 0.01em;
-}
-
-.founder-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2.25rem;
-}
-.tag {
-  font-size: 0.78rem;
-  font-weight: 500;
-  padding: 0.38rem 1rem;
-  border-radius: var(--r-pill);
-  border: 1px solid rgba(0,0,0,0.12);
-  color: var(--c-muted);
-}
-
-.founder-quote {
-  font-family: var(--f-head);
-  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
-  font-weight: 600;
-  color: var(--c-dark);
-  line-height: 1.55;
-  letter-spacing: -0.02em;
-  border-left: 3px solid var(--c-green);
-  padding-left: 1.5rem;
-  margin-bottom: 2rem;
-  font-style: normal;
-}
-
-.founder-para {
-  font-size: 0.9375rem;
-  color: var(--c-muted);
-  line-height: 1.8;
-  margin-bottom: 1rem;
-}
-
-/* ══════════════════════════════════════════════════════
-   17. CTA
-══════════════════════════════════════════════════════ */
-.cta-section {
-  position: relative;
-  background: var(--c-dark);
-  overflow: hidden;
-  padding: 180px 0;
-}
-
-#ctaCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  opacity: 0.45;
-  pointer-events: none;
-}
-
-.cta-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(130px);
-  pointer-events: none;
-}
-.cta-glow--1 {
-  width: 700px; height: 700px;
-  top: -250px; left: 50%;
-  transform: translateX(-50%);
-  background: radial-gradient(circle, rgba(35,155,110,0.28) 0%, transparent 70%);
-}
-.cta-glow--2 {
-  width: 450px; height: 450px;
-  bottom: -100px; right: 8%;
-  background: radial-gradient(circle, rgba(13,59,102,0.45) 0%, transparent 70%);
-  animation: glowFloat 11s ease-in-out infinite;
-}
-
-.cta-container { position: relative; z-index: 2; }
-.cta-inner {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.cta-title {
-  font-family: var(--f-head);
-  font-size: clamp(2rem, 4vw, 3.8rem);
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: -0.04em;
-  line-height: 1.15;
-  margin: 1rem 0 1.5rem;
-}
-.cta-lead {
-  font-size: 1.05rem;
-  color: rgba(255,255,255,0.52);
-  line-height: 1.8;
-  margin-bottom: 2.75rem;
-}
-.cta-actions {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-}
-.cta-meta {
-  display: flex;
-  gap: 2.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.cta-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: rgba(255,255,255,0.38);
-}
-.cta-info svg { width: 16px; height: 16px; flex-shrink: 0; }
-
-/* ══════════════════════════════════════════════════════
-   18. FOOTER
-══════════════════════════════════════════════════════ */
-.footer {
-  background: var(--c-dark);
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-
-.footer-inner {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 5rem;
-  padding: 5rem 0 4rem;
-}
-
-.footer-wordmark {
-  font-family: var(--f-head);
-  font-size: 2.4rem;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: -0.06em;
-  display: block;
-  margin-bottom: 0.75rem;
-}
-
-.footer-tagline {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.35);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-
-.footer-mission {
-  font-size: 0.875rem;
-  color: rgba(255,255,255,0.32);
-  line-height: 1.75;
-  max-width: 380px;
-  margin-bottom: 1.75rem;
-}
-
-.footer-socials { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-
-.social-link {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.38);
-  transition: color 0.2s;
-}
-.social-link svg { width: 16px; height: 16px; }
-.social-link:hover { color: rgba(255,255,255,0.8); }
-
-.footer-nav { display: flex; gap: 4rem; }
-
-.footer-col h4 {
-  font-family: var(--f-body);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
-  margin-bottom: 1.25rem;
-}
-.footer-col ul  { display: flex; flex-direction: column; gap: 0.75rem; }
-.footer-col a   { font-size: 0.875rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
-.footer-col a:hover { color: #fff; }
-
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); }
-.footer-bottom-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 0;
-}
-.copyright { font-size: 0.8rem; color: rgba(255,255,255,0.22); }
-.legal-links { display: flex; gap: 1.5rem; }
-.legal-links a { font-size: 0.8rem; color: rgba(255,255,255,0.22); transition: color 0.2s; }
-.legal-links a:hover { color: rgba(255,255,255,0.6); }
-
-/* ══════════════════════════════════════════════════════
-   19. RESPONSIVE
-══════════════════════════════════════════════════════ */
-@media (max-width: 1100px) {
-  :root { --gutter: 48px; }
-  .tech-grid  { grid-template-columns: repeat(2, 1fr); }
-  .apps-grid  { grid-template-columns: repeat(2, 1fr); }
-  .impact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .process-layout { grid-template-columns: 1fr; gap: 4rem; }
-  .process-diagram { order: -1; }
-  .circ-svg { max-width: 360px; margin: 0 auto; }
-  .founder-layout { grid-template-columns: 1fr; }
-  .portrait-wrap { max-width: 340px; }
-}
-
-@media (max-width: 900px) {
-  :root { --gutter: 32px; --section-v: 100px; }
-  .stat-row     { grid-template-columns: repeat(2, 1fr); }
-  .problem-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .problem-illustration { order: -1; }
-  .tech-grid, .apps-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-inner { grid-template-columns: 1fr; gap: 3rem; }
-  .footer-nav   { flex-wrap: wrap; gap: 2.5rem; }
-}
-
-@media (max-width: 680px) {
-  :root { --gutter: 24px; --section-v: 80px; }
-
-  /* Mobile nav */
-  .nav-menu {
-    display: none;
-    position: fixed;
-    top: 72px; left: 0; right: 0; bottom: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    background: rgba(8,19,31,0.97);
-    backdrop-filter: blur(20px);
-    padding: 2rem var(--gutter);
-    gap: 1.75rem;
-    overflow-y: auto;
-    z-index: 899;
-  }
-  .nav-menu.is-open { display: flex; }
-  .nav-burger { display: flex; }
-  .nav-link { font-size: 1.1rem; }
-
-  .hero-headline br { display: none; }
-  .hero-sub br      { display: none; }
-  .hero-actions     { flex-direction: column; align-items: center; }
-
-  .stat-row  { grid-template-columns: 1fr; }
-  .tech-grid, .apps-grid { grid-template-columns: 1fr; }
-  .impact-grid { grid-template-columns: 1fr; }
-
-  .tl-item { grid-template-columns: 52px 1px 1fr; gap: 0 1.25rem; }
-  .tl-year { font-size: 0.875rem; }
-
-  .founder-layout { gap: 2.5rem; }
-  .portrait-wrap  { max-width: 260px; }
-  .founder-quote  { font-size: 1.05rem; }
-
-  .footer-nav { flex-direction: column; gap: 2rem; }
-  .footer-bottom-inner { flex-direction: column; gap: 0.75rem; text-align: center; }
-
-  .cta-actions { flex-direction: column; align-items: center; }
-  .cta-meta    { flex-direction: column; align-items: center; gap: 0.85rem; }
-}
-
-/* ─── Accessibility ─────────────────────────────────── */
-:focus-visible {
-  outline: 2px solid var(--c-green);
-  outline-offset: 3px;
-}
-#SITE_CONTAINER #main_MF#main_MF .css-editing-scope .wixui-section {
-  padding: 0 !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
-  [class^="reveal-"], [class*=" reveal-"] {
-    opacity: 1;
-    transform: none;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SINK transforms invasive sargassum collected from the Mexican Caribbean into sustainable bio-pigments and bio-based inks for the packaging industry." />
+  <meta name="keywords" content="sargassum, biomaterials, circular economy, sustainable packaging, climate tech, bio-pigments, bio-ink, Mexico Caribbean" />
+  <meta name="author" content="SINK" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SINK — Powered by Nature. Driven by Circularity." />
+  <meta property="og:description" content="SINK transforms invasive sargassum into sustainable bio-pigments and bio-based inks for the packaging industry." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sinkmaterials.com" />
+  <meta property="og:image" content="assets/images/og-image.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SINK — Powered by Nature. Driven by Circularity." />
+  <meta name="twitter:description" content="SINK transforms invasive sargassum into sustainable bio-pigments and bio-based inks for the packaging industry." />
+  <meta name="twitter:image" content="assets/images/og-image.jpg" />
+
+  <title>SINK — Powered by Nature. Driven by Circularity.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700;800;900&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="SINK — Home">
+        <img src="assets/images/logo-icon.png" alt="SINK" class="nav-logo-img" />
+      </a>
+      <button class="nav-burger" id="navBurger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu" role="list">
+        <li><a href="#problem"     class="nav-link">Problem</a></li>
+        <li><a href="#solution"    class="nav-link">Solution</a></li>
+        <li><a href="#technology"  class="nav-link">Technology</a></li>
+        <li><a href="#impact"      class="nav-link">Impact</a></li>
+        <li><a href="#roadmap"     class="nav-link">Roadmap</a></li>
+        <li><a href="#contact"     class="nav-link nav-cta-link">Partner With Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ═══════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════ -->
+    <section id="hero" class="hero" aria-label="Hero — SINK">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+
+      <div class="hero-glow hero-glow--1" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--2" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <!-- Logo mark -->
+        <div class="hero-brand reveal-up" style="--delay:0.1s">
+          <img src="assets/images/logo-wordmark-2.png" alt="SINK — Powered by Nature, Driven by Circularity" class="hero-logo-img" />
+        </div>
+
+        <h1 class="hero-headline reveal-up" style="--delay:0.3s">
+          Transforming Marine Biomass<br>Into Sustainable Materials.
+        </h1>
+        <p class="hero-sub reveal-up" style="--delay:0.45s">
+          We transform sargassum into bio-based pigments and circular materials<br class="br-desk"> for the future of sustainable packaging.
+        </p>
+        <div class="hero-actions reveal-up" style="--delay:0.6s">
+          <a href="#problem" class="btn btn--primary">Discover SINK</a>
+          <a href="#contact" class="btn btn--ghost">Partner With Us</a>
+        </div>
+      </div>
+
+      <div class="scroll-cue reveal-up" style="--delay:1s" aria-label="Scroll down">
+        <div class="scroll-cue__dot"></div>
+        <span>Scroll</span>
+      </div>
+
+      <!-- SVG Wave -->
+      <div class="hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,55 C180,95 360,15 540,55 C720,95 900,15 1080,55 C1260,95 1380,35 1440,55 L1440,110 L0,110 Z" fill="#F7F2EB"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         THE PROBLEM
+    ═══════════════════════════════════════ -->
+    <section id="problem" class="section" aria-label="The Problem">
+      <div class="container">
+        <header class="section-header reveal-up">
+          <span class="label">The Challenge</span>
+          <h2>A Crisis Washing&nbsp;Ashore</h2>
+          <p class="section-lead">
+            Sargassum, once a vital open-ocean ecosystem, has become one of the Caribbean's most urgent environmental emergencies, affecting coastlines, communities, and marine life across the entire region.
+          </p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stat-row reveal-up">
+          <article class="stat-card">
+            <span class="stat-card__num">24M+</span>
+            <span class="stat-card__unit">metric tons</span>
+            <p class="stat-card__desc">of sargassum reached Caribbean shores in 2023 alone</p>
+          </article>
+          <article class="stat-card">
+            <span class="stat-card__num">$120M</span>
+            <span class="stat-card__unit">USD / year</span>
+            <p class="stat-card__desc">estimated tourism losses across the Caribbean basin</p>
+          </article>
+          <article class="stat-card">
+            <span class="stat-card__num">1,000s</span>
+            <span class="stat-card__unit">km affected</span>
+            <p class="stat-card__desc">of Caribbean coastline impacted each sargassum season</p>
+          </article>
+          <article class="stat-card">
+            <span class="stat-card__num">2×</span>
+            <span class="stat-card__unit">growth rate</span>
+            <p class="stat-card__desc">bloom expansion since 2011, driven by ocean warming and nutrient run-off</p>
+          </article>
+        </div>
+
+        <!-- Problem grid -->
+        <div class="problem-grid reveal-up">
+          <!-- Illustration -->
+          <div class="problem-illustration">
+            <img src="assets/images/sargassum-beach.webp" alt="Sargassum accumulated on a Caribbean beach" class="problem-photo" />
+          </div>
+
+          <!-- Problem points -->
+          <div class="problem-points">
+            <article class="problem-point reveal-left" style="--delay:0.1s">
+              <div class="pp-icon" aria-hidden="true">
+                <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="22" cy="22" r="21" stroke="#26A269" stroke-width="1" fill="none" opacity="0.25"/>
+                  <path d="M22 10 C15 10 9 16 9 22 S15 34 22 34 S35 28 35 22 S29 10 22 10Z" stroke="#26A269" stroke-width="1.2" fill="none"/>
+                  <path d="M15 22 Q18 17 22 22 Q26 27 29 22" stroke="#5CBF3A" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="pp-text">
+                <h3>Marine Ecosystem Collapse</h3>
+                <p>Decomposing sargassum depletes oxygen, creates hydrogen sulphide dead zones, and smothers the coral reefs and seagrass beds that underpin Caribbean biodiversity.</p>
+              </div>
+            </article>
+
+            <article class="problem-point reveal-left" style="--delay:0.2s">
+              <div class="pp-icon" aria-hidden="true">
+                <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="22" cy="22" r="21" stroke="#26A269" stroke-width="1" fill="none" opacity="0.25"/>
+                  <path d="M14 32 L22 14 L30 32 Z" stroke="#26A269" stroke-width="1.2" fill="none"/>
+                  <line x1="22" y1="21" x2="22" y2="27" stroke="#5CBF3A" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="22" cy="29.5" r="1.2" fill="#5CBF3A"/>
+                </svg>
+              </div>
+              <div class="pp-text">
+                <h3>Tourism & Economic Crisis</h3>
+                <p>Toxic gases, beach blockades, and the visual impact of mass sargassum arrivals have caused hundreds of millions in tourism losses across Mexico and the wider Caribbean.</p>
+              </div>
+            </article>
+
+            <article class="problem-point reveal-left" style="--delay:0.3s">
+              <div class="pp-icon" aria-hidden="true">
+                <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="22" cy="22" r="21" stroke="#26A269" stroke-width="1" fill="none" opacity="0.25"/>
+                  <rect x="13" y="18" width="18" height="14" rx="2" stroke="#26A269" stroke-width="1.2" fill="none"/>
+                  <path d="M17 18 L17 14 Q22 11 27 14 L27 18" stroke="#5CBF3A" stroke-width="1.2" fill="none"/>
+                </svg>
+              </div>
+              <div class="pp-text">
+                <h3>Waste Management Failure</h3>
+                <p>Existing removal methods, including mechanical scooping and landfill disposal, are energy-intensive, expensive, and generate secondary pollution. They treat a resource as refuse.</p>
+              </div>
+            </article>
+
+            <article class="problem-point reveal-left" style="--delay:0.4s">
+              <div class="pp-icon" aria-hidden="true">
+                <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="22" cy="22" r="21" stroke="#26A269" stroke-width="1" fill="none" opacity="0.25"/>
+                  <circle cx="22" cy="22" r="7" stroke="#26A269" stroke-width="1.2" fill="none"/>
+                  <path d="M22 10 L22 15 M22 29 L22 34 M10 22 L15 22 M29 22 L34 22" stroke="#5CBF3A" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="pp-text">
+                <h3>Lost Economic Opportunity</h3>
+                <p>Millions of tonnes of bioactive biomass with genuine commercial potential are discarded annually, forgoing unique circular value chains that could benefit coastal communities.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         THE SOLUTION
+    ═══════════════════════════════════════ -->
+    <section id="solution" class="section section--dark" aria-label="Our Solution">
+      <div class="container">
+        <header class="section-header reveal-up">
+          <span class="label label--light">Our Approach</span>
+          <h2 class="light">From Crisis to Circular Economy</h2>
+          <p class="section-lead light">
+            SINK's proprietary process transforms invasive sargassum into premium bio-based materials, closing the loop between marine waste and sustainable manufacturing.
+          </p>
+        </header>
+
+        <div class="process-layout">
+          <!-- Step list -->
+          <ol class="process-steps" aria-label="SINK's circular process">
+            <li class="process-step" data-step="1">
+              <div class="ps-marker" aria-hidden="true"><span>01</span></div>
+              <div class="ps-body">
+                <h3>Sargassum Collection</h3>
+                <p>Strategic coastal collection transforms an environmental burden into a premium raw material, while relieving local beaches of a destructive biomass load.</p>
+              </div>
+            </li>
+            <li class="process-step" data-step="2">
+              <div class="ps-marker" aria-hidden="true"><span>02</span></div>
+              <div class="ps-body">
+                <h3>Cleaning &amp; Preparation</h3>
+                <p>Proprietary protocols remove salt, sand, and contaminants while preserving the bioactive compounds critical to pigment yield and quality.</p>
+              </div>
+            </li>
+            <li class="process-step" data-step="3">
+              <div class="ps-marker" aria-hidden="true"><span>03</span></div>
+              <div class="ps-body">
+                <h3>72-Hour Solar Drying</h3>
+                <p>Solar-powered drying eliminates energy-intensive industrial heating, using the same Caribbean sun that drives the sargassum bloom to process it.</p>
+              </div>
+            </li>
+            <li class="process-step" data-step="4">
+              <div class="ps-marker" aria-hidden="true"><span>04</span></div>
+              <div class="ps-body">
+                <h3>Precision Grinding</h3>
+                <p>Calibrated milling converts dried biomass into fine powders optimised for pigment extraction, ensuring consistent particle size and surface area.</p>
+              </div>
+            </li>
+            <li class="process-step" data-step="5">
+              <div class="ps-marker" aria-hidden="true"><span>05</span></div>
+              <div class="ps-body">
+                <h3>Organic Pigment</h3>
+                <p>Natural chromophore extraction produces stable, lightfast pigments across the visible spectrum, a nature-derived alternative with measurable performance data.</p>
+              </div>
+            </li>
+            <li class="process-step" data-step="6">
+              <div class="ps-marker" aria-hidden="true"><span>06</span></div>
+              <div class="ps-body">
+                <h3>Bio-Ink Formulation</h3>
+                <p>Integration of bio-pigments into water-based ink systems, validated for commercial printing applications and food-contact compliance.</p>
+              </div>
+            </li>
+            <li class="process-step" data-step="7">
+              <div class="ps-marker" aria-hidden="true"><span>07</span></div>
+              <div class="ps-body">
+                <h3>Sustainable Packaging</h3>
+                <p>Finished bio-inks are applied to packaging substrates, delivering verifiably lower environmental footprints without compromising print performance.</p>
+              </div>
+            </li>
+            <li class="process-step" data-step="8">
+              <div class="ps-marker" aria-hidden="true"><span>08</span></div>
+              <div class="ps-body">
+                <h3>Circular Economy</h3>
+                <p>Compostable end-of-life properties close the loop: organic matter returns to the environment while value circulates back to coastal communities.</p>
+              </div>
+            </li>
+          </ol>
+
+          <!-- Circular diagram -->
+          <div class="process-diagram" aria-hidden="true">
+            <svg class="circ-svg" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="cd-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%"  stop-color="#26A269"/>
+                  <stop offset="100%" stop-color="#5CBF3A"/>
+                </linearGradient>
+                <linearGradient id="cd-bg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%"  stop-color="#0D3B66"/>
+                  <stop offset="100%" stop-color="#0A2A45"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Background rings -->
+              <circle cx="210" cy="210" r="190" stroke="#26A269" stroke-width="0.5" fill="none" opacity="0.12"/>
+              <circle cx="210" cy="210" r="160" stroke="#26A269" stroke-width="0.5" fill="none" opacity="0.18"/>
+              <circle cx="210" cy="210" r="130" stroke="#26A269" stroke-width="1"   fill="none" opacity="0.2"/>
+
+              <!-- Animated arc -->
+              <circle cx="210" cy="210" r="175" stroke="url(#cd-grad)" stroke-width="2" fill="none"
+                      stroke-dasharray="60 1040" stroke-linecap="round" class="circ-arc"/>
+
+              <!-- Center -->
+              <circle cx="210" cy="210" r="72" fill="url(#cd-bg)" opacity="0.9"/>
+              <text x="210" y="204" text-anchor="middle" font-family="Outfit, sans-serif" font-size="24" font-weight="800" fill="white" letter-spacing="-1">SINK</text>
+              <text x="210" y="222" text-anchor="middle" font-family="Inter, sans-serif"  font-size="8"  fill="#5CBF3A" letter-spacing="2.5">CIRCULAR PROCESS</text>
+
+              <!-- Node positions (8 steps on circle r=175) -->
+              <!-- 0°: top = 210, 210-175 = 35 -->
+              <!-- Each step: 360/8 = 45° apart -->
+              <g class="circ-nodes">
+                <!-- Step 1: 270° from east = top: (210, 35) -->
+                <circle class="circ-node" cx="210" cy="35"  r="14" fill="#26A269" opacity="0.85"/>
+                <text x="210" y="39.5" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="white" font-weight="700">01</text>
+                <!-- Step 2: 315° → (210+175*cos(315), 210+175*sin(315)) ≈ (323.7, 96.3) -->
+                <circle class="circ-node" cx="333" cy="87"  r="14" fill="#26A269" opacity="0.8"/>
+                <text x="333" y="91.5" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="white" font-weight="700">02</text>
+                <!-- Step 3: 0° east: (385, 210) -->
+                <circle class="circ-node" cx="385" cy="210" r="14" fill="#26A269" opacity="0.75"/>
+                <text x="385" y="214.5" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="white" font-weight="700">03</text>
+                <!-- Step 4: 45°: (333, 333) -->
+                <circle class="circ-node" cx="333" cy="333" r="14" fill="#26A269" opacity="0.75"/>
+                <text x="333" y="337.5" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="white" font-weight="700">04</text>
+                <!-- Step 5: 90° south: (210, 385) -->
+                <circle class="circ-node" cx="210" cy="385" r="14" fill="#5CBF3A" opacity="0.8"/>
+                <text x="210" y="389.5" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="white" font-weight="700">05</text>
+                <!-- Step 6: 135°: (87, 333) -->
+                <circle class="circ-node" cx="87"  cy="333" r="14" fill="#5CBF3A" opacity="0.8"/>
+                <text x="87" y="337.5" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="white" font-weight="700">06</text>
+                <!-- Step 7: 180° west: (35, 210) -->
+                <circle class="circ-node" cx="35"  cy="210" r="14" fill="#5CBF3A" opacity="0.85"/>
+                <text x="35" y="214.5" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="white" font-weight="700">07</text>
+                <!-- Step 8: 225°: (87, 87) -->
+                <circle class="circ-node" cx="87"  cy="87"  r="14" fill="#5CBF3A" opacity="0.9"/>
+                <text x="87" y="91.5" text-anchor="middle" font-family="Outfit,sans-serif" font-size="9" fill="white" font-weight="700">08</text>
+              </g>
+
+              <!-- Step labels -->
+              <text x="210" y="15"   text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="white" opacity="0.45">Collection</text>
+              <text x="358" y="72"   text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="white" opacity="0.45">Cleaning</text>
+              <text x="410" y="213"  text-anchor="start"  font-family="Inter,sans-serif" font-size="8" fill="white" opacity="0.45">Solar Dry</text>
+              <text x="355" y="358"  text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="white" opacity="0.45">Grinding</text>
+              <text x="210" y="410"  text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="white" opacity="0.45">Pigment</text>
+              <text x="65"  y="358"  text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="white" opacity="0.45">Bio-Ink</text>
+              <text x="0"   y="213"  text-anchor="start"  font-family="Inter,sans-serif" font-size="8" fill="white" opacity="0.45">Pkg</text>
+              <text x="65"  y="72"   text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="white" opacity="0.45">Circular</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         TECHNOLOGY
+    ═══════════════════════════════════════ -->
+    <section id="technology" class="section" aria-label="Technology">
+      <div class="container">
+        <header class="section-header reveal-up">
+          <span class="label">Our Technology</span>
+          <h2>Science at the Core</h2>
+          <p class="section-lead">
+            Every SINK product is backed by rigorous scientific methodology, from biomolecular extraction to commercial print validation. Research is not a marketing claim; it is our foundation.
+          </p>
+        </header>
+
+        <div class="tech-grid">
+
+          <article class="tech-card reveal-up" style="--delay:0.05s">
+            <div class="tc-header">
+              <div class="tc-icon" aria-hidden="true">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="28" cy="28" r="26" stroke="#26A269" stroke-width="1" fill="none" opacity="0.2"/>
+                  <circle cx="28" cy="28" r="16" stroke="#26A269" stroke-width="1" fill="none" opacity="0.35"/>
+                  <circle cx="28" cy="28" r="4"  fill="#26A269" opacity="0.7"/>
+                  <circle cx="28" cy="11" r="3.5" fill="#5CBF3A" opacity="0.8"/>
+                  <circle cx="43" cy="36" r="3.5" fill="#5CBF3A" opacity="0.8"/>
+                  <circle cx="13" cy="36" r="3.5" fill="#5CBF3A" opacity="0.8"/>
+                  <line x1="28" y1="24" x2="28" y2="14.5" stroke="#26A269" stroke-width="1" opacity="0.4"/>
+                  <line x1="32" y1="31" x2="40" y2="34" stroke="#26A269" stroke-width="1" opacity="0.4"/>
+                  <line x1="24" y1="31" x2="16" y2="34" stroke="#26A269" stroke-width="1" opacity="0.4"/>
+                </svg>
+              </div>
+              <span class="tc-num">01</span>
+            </div>
+            <h3>Scientific Research</h3>
+            <p><strong>Validated Biomolecular Methodology:</strong> Based on Master's-level research, SINK applies Design Thinking and Scientific Validation to address the Environmental Irony of the packaging industry.</p>
+          </article>
+
+          <article class="tech-card reveal-up" style="--delay:0.1s">
+            <div class="tc-header">
+              <div class="tc-icon" aria-hidden="true">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="16" y="10" width="10" height="36" rx="3" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                  <rect x="30" y="20" width="10" height="26" rx="3" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                  <path d="M18 25 Q21 18 26 25" stroke="#5CBF3A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                  <path d="M32 30 Q35 23 40 30" stroke="#5CBF3A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                  <line x1="8" y1="46" x2="48" y2="46" stroke="#26A269" stroke-width="1" opacity="0.3"/>
+                </svg>
+              </div>
+              <span class="tc-num">02</span>
+            </div>
+            <h3>Pigment Development</h3>
+            <p><strong>Standardized Biomass Transformation:</strong> We transform sargassum from an environmental liability into an industrial asset through solar dehydration and mechanical pulverization.</p>
+          </article>
+
+          <article class="tech-card reveal-up" style="--delay:0.15s">
+            <div class="tc-header">
+              <div class="tc-icon" aria-hidden="true">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 46 L14 22 Q14 16 20 16 L24 16" stroke="#26A269" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                  <path d="M42 46 L42 22 Q42 16 36 16 L32 16" stroke="#26A269" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                  <rect x="21" y="10" width="14" height="9" rx="3" stroke="#5CBF3A" stroke-width="1.4" fill="none"/>
+                  <path d="M20 46 C23 38 33 38 36 46" fill="#26A269" opacity="0.12"/>
+                  <path d="M20 46 C23 38 33 38 36 46" stroke="#5CBF3A" stroke-width="1.4" fill="none"/>
+                  <circle cx="28" cy="31" r="5" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                </svg>
+              </div>
+              <span class="tc-num">03</span>
+            </div>
+            <h3>Bio-Ink Formulation</h3>
+            <p><strong>The 10:6 Proprietary Formula:</strong> SINK has engineered a non-toxic, 100% biodegradable bio-ink that eliminates carcinogenic heavy metals and is safe for food contact and industrial use.</p>
+          </article>
+
+          <article class="tech-card reveal-up" style="--delay:0.05s">
+            <div class="tc-header">
+              <div class="tc-icon" aria-hidden="true">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="10" y="26" width="36" height="22" rx="3" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                  <path d="M18 26 L18 18 Q18 12 28 12 Q38 12 38 18 L38 26" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                  <path d="M14 33 L42 33" stroke="#26A269" stroke-width="0.8" opacity="0.3"/>
+                  <circle cx="28" cy="39" r="4" stroke="#5CBF3A" stroke-width="1.4" fill="none"/>
+                  <line x1="28" y1="43" x2="28" y2="47" stroke="#5CBF3A" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span class="tc-num">04</span>
+            </div>
+            <h3>Printing Validation</h3>
+            <p><strong>Substrate-Specific Performance:</strong> Our bio-inks have been validated on eco-friendly substrates, confirming strong adhesion and color density for both manual and industrial printing.</p>
+          </article>
+
+          <article class="tech-card reveal-up" style="--delay:0.1s">
+            <div class="tc-header">
+              <div class="tc-icon" aria-hidden="true">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="8"  y="20" width="40" height="26" rx="4" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                  <path d="M16 20 L16 14 Q16 10 20 10 L36 10 Q40 10 40 14 L40 20" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                  <line x1="22" y1="34" x2="34" y2="34" stroke="#5CBF3A" stroke-width="1.6" stroke-linecap="round"/>
+                  <line x1="22" y1="38" x2="30" y2="38" stroke="#5CBF3A" stroke-width="1"   stroke-linecap="round" opacity="0.5"/>
+                  <circle cx="16" cy="28" r="3" stroke="#26A269" stroke-width="1.2" fill="none"/>
+                </svg>
+              </div>
+              <span class="tc-num">05</span>
+            </div>
+            <h3>Packaging Design</h3>
+            <p><strong>End-to-End Brand Coherence:</strong> We align organic content with sustainable containers, enabling brands to design full circular packaging systems where nothing becomes waste.</p>
+          </article>
+
+          <article class="tech-card reveal-up" style="--delay:0.15s">
+            <div class="tc-header">
+              <div class="tc-icon" aria-hidden="true">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M28 7 L50 19.5 L50 44.5 L28 57 L6 44.5 L6 19.5 Z" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                  <path d="M28 7  L28 57" stroke="#26A269" stroke-width="0.8" opacity="0.2"/>
+                  <path d="M6 19.5 L50 44.5" stroke="#26A269" stroke-width="0.8" opacity="0.2"/>
+                  <path d="M50 19.5 L6 44.5"  stroke="#26A269" stroke-width="0.8" opacity="0.2"/>
+                  <circle cx="28" cy="32" r="9" stroke="#5CBF3A" stroke-width="1.4" fill="none"/>
+                  <path d="M24 32 L27 35 L33 28" stroke="#5CBF3A" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="tc-num">06</span>
+            </div>
+            <h3>Circular Manufacturing</h3>
+            <p><strong>Sovereign Value Chains:</strong> SINK helps companies meet environmental regulations while returning value to coastal communities through a sovereign circular value chain.</p>
+          </article>
+
+        </div>
+
+        <!-- Sargassum Composition Infographic -->
+        <div class="reveal-up" style="margin-top:3.5rem;max-width:860px;margin-left:auto;margin-right:auto;">
+          <svg width="100%" height="auto" viewBox="0 0 860 530" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Composición Básica del Sargazo">
+            <defs>
+              <radialGradient id="cg-main" cx="35%" cy="30%" r="65%" gradientUnits="objectBoundingBox">
+                <stop offset="0%" stop-color="#1EBDC8"/>
+                <stop offset="100%" stop-color="#0A4E7A"/>
+              </radialGradient>
+              <radialGradient id="cg-agua" cx="35%" cy="30%" r="65%" gradientUnits="objectBoundingBox">
+                <stop offset="0%" stop-color="#5CBF3A"/>
+                <stop offset="100%" stop-color="#1A7A50"/>
+              </radialGradient>
+              <linearGradient id="cg-bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0D2A3F"/>
+                <stop offset="100%" stop-color="#071A2B"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Background -->
+            <rect width="860" height="530" rx="16" fill="url(#cg-bg)"/>
+            <circle cx="430" cy="265" r="370" stroke="#26A269" stroke-width="0.5" fill="none" opacity="0.06"/>
+            <circle cx="430" cy="265" r="250" stroke="#26A269" stroke-width="0.5" fill="none" opacity="0.06"/>
+
+            <!-- Title -->
+            <text x="44" y="60"  font-family="Outfit,sans-serif" font-size="28" font-weight="800" fill="#26A269">COMPOSICIÓN</text>
+            <text x="44" y="92"  font-family="Outfit,sans-serif" font-size="28" font-weight="800" fill="#26A269">BÁSICA DEL</text>
+            <text x="44" y="124" font-family="Outfit,sans-serif" font-size="28" font-weight="800" fill="#26A269">SARGAZO</text>
+            <text x="838" y="26" text-anchor="end" font-family="Outfit,sans-serif" font-size="11" font-weight="500" fill="white" opacity="0.28">SINK · Fuente: Ciencia UNAM</text>
+
+            <!-- Ceniza (large) -->
+            <circle cx="195" cy="232" r="80" fill="url(#cg-main)" opacity="0.9"/>
+            <text x="195" y="225" text-anchor="middle" font-family="Outfit,sans-serif" font-size="16" font-weight="700" fill="white">Ceniza</text>
+            <text x="195" y="246" text-anchor="middle" font-family="Outfit,sans-serif" font-size="16" font-weight="700" fill="white">9–47%</text>
+
+            <!-- Proteínas (medium) -->
+            <circle cx="415" cy="148" r="65" fill="url(#cg-main)" opacity="0.9"/>
+            <text x="415" y="141" text-anchor="middle" font-family="Outfit,sans-serif" font-size="14" font-weight="700" fill="white">Proteínas</text>
+            <text x="415" y="160" text-anchor="middle" font-family="Outfit,sans-serif" font-size="14" font-weight="700" fill="white">2–15%</text>
+
+            <!-- Grasas (small) -->
+            <circle cx="415" cy="294" r="50" fill="url(#cg-main)" opacity="0.85"/>
+            <text x="415" y="284" text-anchor="middle" font-family="Outfit,sans-serif" font-size="12" font-weight="700" fill="white">Grasas</text>
+            <text x="415" y="299" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="white">(lípidos)</text>
+            <text x="415" y="314" text-anchor="middle" font-family="Outfit,sans-serif" font-size="12" font-weight="700" fill="white">&lt;4%</text>
+
+            <!-- Fibras (large) -->
+            <circle cx="660" cy="192" r="80" fill="url(#cg-main)" opacity="0.9"/>
+            <text x="660" y="185" text-anchor="middle" font-family="Outfit,sans-serif" font-size="16" font-weight="700" fill="white">Fibras</text>
+            <text x="660" y="206" text-anchor="middle" font-family="Outfit,sans-serif" font-size="16" font-weight="700" fill="white">7–33%</text>
+
+            <!-- Carbohidratos (large) -->
+            <circle cx="212" cy="400" r="80" fill="url(#cg-main)" opacity="0.9"/>
+            <text x="212" y="386" text-anchor="middle" font-family="Outfit,sans-serif" font-size="12" font-weight="700" fill="white">Carbohidratos</text>
+            <text x="212" y="403" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="white">(polisacáridos)</text>
+            <text x="212" y="420" text-anchor="middle" font-family="Outfit,sans-serif" font-size="13" font-weight="700" fill="white">11–59%</text>
+
+            <!-- Agua (large, green) -->
+            <circle cx="718" cy="432" r="80" fill="url(#cg-agua)" opacity="0.9"/>
+            <text x="718" y="425" text-anchor="middle" font-family="Outfit,sans-serif" font-size="16" font-weight="700" fill="white">Agua</text>
+            <text x="718" y="446" text-anchor="middle" font-family="Outfit,sans-serif" font-size="16" font-weight="700" fill="white">82–87%</text>
+
+            <!-- Connector lines for Biomasa seca bracket -->
+            <line x1="572" y1="288" x2="572" y2="418" stroke="#5CBF3A" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.45"/>
+            <line x1="572" y1="350" x2="592" y2="350" stroke="#5CBF3A" stroke-width="1.5" opacity="0.45"/>
+            <line x1="487" y1="301" x2="572" y2="325" stroke="#5CBF3A" stroke-width="1" stroke-dasharray="3 3" opacity="0.35"/>
+            <line x1="487" y1="381" x2="572" y2="370" stroke="#5CBF3A" stroke-width="1" stroke-dasharray="3 3" opacity="0.35"/>
+
+            <!-- Vitaminas y minerales label -->
+            <rect x="318" y="282" width="165" height="38" rx="5" fill="#7A6535"/>
+            <text x="400" y="298" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="white">Vitaminas</text>
+            <text x="400" y="314" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="white">y minerales</text>
+
+            <!-- Metabolitos secundarios label -->
+            <rect x="305" y="362" width="180" height="40" rx="5" fill="#7A6535"/>
+            <text x="395" y="378" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="white">Metabolitos secundarios</text>
+            <text x="395" y="394" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="white">&lt;0.5%</text>
+
+            <!-- Biomasa seca label -->
+            <rect x="592" y="333" width="128" height="36" rx="5" fill="#C17D2A"/>
+            <text x="656" y="348" text-anchor="middle" font-family="Outfit,sans-serif" font-size="13" font-weight="700" fill="white">Biomasa</text>
+            <text x="656" y="363" text-anchor="middle" font-family="Outfit,sans-serif" font-size="13" font-weight="700" fill="white">seca</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         APPLICATIONS
+    ═══════════════════════════════════════ -->
+    <section id="applications" class="section section--sand" aria-label="Market Applications">
+      <div class="container">
+        <header class="section-header reveal-up">
+          <span class="label">Market Applications</span>
+          <h2>Industries We Serve</h2>
+          <p class="section-lead">
+            SINK bio-inks perform across multiple packaging segments, serving brands that demand both premium aesthetics and verified sustainability credentials.
+          </p>
+        </header>
+
+        <div class="apps-grid">
+
+          <article class="app-card reveal-up" style="--delay:0.05s">
+            <div class="ac-visual" aria-hidden="true">
+              <svg viewBox="0 0 220 148" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="ac-g1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%"  stop-color="#0D3B66"/>
+                    <stop offset="100%" stop-color="#18304A"/>
+                  </linearGradient>
+                </defs>
+                <rect width="220" height="148" rx="14" fill="url(#ac-g1)"/>
+                <rect x="75" y="28" width="26" height="88" rx="6" stroke="#EFE8DC" stroke-width="1.4" fill="none" opacity="0.6"/>
+                <rect x="112" y="44" width="22" height="72" rx="5" stroke="#26A269" stroke-width="1.4" fill="none" opacity="0.7"/>
+                <rect x="75"  y="22" width="26" height="10" rx="4" fill="#EFE8DC" opacity="0.2"/>
+                <rect x="112" y="38" width="22" height="9"  rx="3" fill="#26A269"  opacity="0.2"/>
+                <!-- label lines -->
+                <line x1="88" y1="50" x2="88" y2="70" stroke="#EFE8DC" stroke-width="0.8" opacity="0.3"/>
+                <line x1="123" y1="62" x2="123" y2="78" stroke="#26A269" stroke-width="0.8" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="ac-body">
+              <h3>Cosmetics</h3>
+              <p>Premium beauty brands seeking certified bio-based packaging with provable circular credentials and an authentic ocean provenance story.</p>
+            </div>
+          </article>
+
+          <article class="app-card reveal-up" style="--delay:0.1s">
+            <div class="ac-visual" aria-hidden="true">
+              <svg viewBox="0 0 220 148" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="ac-g2" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%"  stop-color="#1a3824"/>
+                    <stop offset="100%" stop-color="#0f2218"/>
+                  </linearGradient>
+                </defs>
+                <rect width="220" height="148" rx="14" fill="url(#ac-g2)"/>
+                <rect x="55" y="35" width="110" height="78" rx="7" stroke="#5CBF3A" stroke-width="1.4" fill="none" opacity="0.65"/>
+                <line x1="55" y1="60" x2="165" y2="60" stroke="#5CBF3A" stroke-width="0.8" opacity="0.3"/>
+                <circle cx="110" cy="86" r="16" stroke="#5CBF3A" stroke-width="1.2" fill="none" opacity="0.45"/>
+                <circle cx="110" cy="86" r="5"  fill="#5CBF3A" opacity="0.25"/>
+              </svg>
+            </div>
+            <div class="ac-body">
+              <h3>Food &amp; Beverage</h3>
+              <p>Food-safe bio-inks for primary and secondary packaging, meeting stringent regulatory requirements for direct food contact and compostable disposal.</p>
+            </div>
+          </article>
+
+          <article class="app-card reveal-up" style="--delay:0.15s">
+            <div class="ac-visual" aria-hidden="true">
+              <svg viewBox="0 0 220 148" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="ac-g3" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%"  stop-color="#201b0e"/>
+                    <stop offset="100%" stop-color="#2e2416"/>
+                  </linearGradient>
+                </defs>
+                <rect width="220" height="148" rx="14" fill="url(#ac-g3)"/>
+                <rect x="65" y="50" width="90" height="62" rx="5" stroke="#EFE8DC" stroke-width="1.4" fill="none" opacity="0.5"/>
+                <circle cx="110" cy="38" r="16" stroke="#EFE8DC" stroke-width="1.4" fill="none" opacity="0.45"/>
+                <line x1="94" y1="38" x2="126" y2="38" stroke="#EFE8DC" stroke-width="0.8" opacity="0.3"/>
+                <line x1="110" y1="22" x2="110" y2="54" stroke="#EFE8DC" stroke-width="0.8" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="ac-body">
+              <h3>Hospitality</h3>
+              <p>Hotels and resorts replacing petroleum-based inks with ocean-derived alternatives that carry an authentic environmental narrative.</p>
+            </div>
+          </article>
+
+          <article class="app-card reveal-up" style="--delay:0.05s">
+            <div class="ac-visual" aria-hidden="true">
+              <svg viewBox="0 0 220 148" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="ac-g4" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%"  stop-color="#0D3B66"/>
+                    <stop offset="100%" stop-color="#26A269" stop-opacity="0.35"/>
+                  </linearGradient>
+                </defs>
+                <rect width="220" height="148" rx="14" fill="url(#ac-g4)"/>
+                <path d="M75 100 Q110 42 145 100" stroke="#EFE8DC" stroke-width="1.5" fill="none" opacity="0.55"/>
+                <path d="M90 78  Q110 52  130 78"  stroke="#5CBF3A" stroke-width="1.2" fill="none" opacity="0.5"/>
+                <circle cx="110" cy="104" r="6" fill="#EFE8DC" opacity="0.35"/>
+              </svg>
+            </div>
+            <div class="ac-body">
+              <h3>Tourism</h3>
+              <p>Caribbean tourism operators aligning branded materials with genuine marine conservation commitments, closing a powerful brand-environment loop.</p>
+            </div>
+          </article>
+
+          <article class="app-card reveal-up" style="--delay:0.1s">
+            <div class="ac-visual" aria-hidden="true">
+              <svg viewBox="0 0 220 148" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="ac-g5" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%"  stop-color="#1a1a2e"/>
+                    <stop offset="100%" stop-color="#0e0e1e"/>
+                  </linearGradient>
+                </defs>
+                <rect width="220" height="148" rx="14" fill="url(#ac-g5)"/>
+                <rect x="58" y="28" width="104" height="92" rx="10" stroke="#EFE8DC" stroke-width="1.4" fill="none" opacity="0.35"/>
+                <rect x="68" y="38" width="84"  height="72" rx="8"  stroke="#EFE8DC" stroke-width="0.7" fill="none" opacity="0.2"/>
+                <line x1="80" y1="74" x2="140" y2="74" stroke="#EFE8DC" stroke-width="0.7" opacity="0.3"/>
+                <line x1="110" y1="48" x2="110" y2="100" stroke="#EFE8DC" stroke-width="0.7" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="ac-body">
+              <h3>Luxury Brands</h3>
+              <p>Heritage luxury houses differentiate through genuine ocean-derived materials, adding rare provenance and authentic purpose to premium packaging.</p>
+            </div>
+          </article>
+
+          <article class="app-card reveal-up" style="--delay:0.15s">
+            <div class="ac-visual" aria-hidden="true">
+              <svg viewBox="0 0 220 148" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="ac-g6" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%"  stop-color="#1a2e1a"/>
+                    <stop offset="100%" stop-color="#132013"/>
+                  </linearGradient>
+                </defs>
+                <rect width="220" height="148" rx="14" fill="url(#ac-g6)"/>
+                <rect x="50"  y="46" width="36" height="60" rx="4" stroke="#5CBF3A" stroke-width="1.4" fill="none" opacity="0.6"/>
+                <rect x="92"  y="34" width="36" height="72" rx="4" stroke="#26A269" stroke-width="1.4" fill="none" opacity="0.5"/>
+                <rect x="134" y="52" width="36" height="56" rx="4" stroke="#5CBF3A" stroke-width="1.4" fill="none" opacity="0.55"/>
+              </svg>
+            </div>
+            <div class="ac-body">
+              <h3>Consumer Goods</h3>
+              <p>FMCG brands accelerating packaging sustainability transitions with verified bio-based inks at commercial scale, without switching suppliers or infrastructure.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         IMPACT
+    ═══════════════════════════════════════ -->
+    <section id="impact" class="section section--dark" aria-label="Impact">
+      <div class="container">
+        <header class="section-header reveal-up">
+          <span class="label label--light">Measurable Impact</span>
+          <h2 class="light">Where Science Meets Purpose</h2>
+          <p class="section-lead light">
+            Every kilogram of sargassum SINK processes generates cascading environmental, social, and economic value, transforming one of Mexico's greatest coastal crises into a sovereign industrial asset.
+          </p>
+        </header>
+
+        <div class="impact-grid">
+
+          <div class="impact-cat reveal-up" style="--delay:0.05s">
+            <div class="impact-cat__head">
+              <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="17" cy="17" r="15" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                <path d="M11 22 Q14 13 17 15 Q20 17 23 10" stroke="#5CBF3A" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </svg>
+              <h3>Environmental</h3>
+            </div>
+            <div class="impact-metrics">
+              <div class="impact-metric">
+                <div class="im-num">
+                  <span class="counter" data-target="52" data-suffix="K+">0</span>
+                </div>
+                <p>Tons of sargassum targeted for recovery annually, diverting toxic hydrogen sulfide from coastlines</p>
+              </div>
+              <div class="impact-metric">
+                <div class="im-num">
+                  <span class="counter" data-target="25" data-suffix="%">0</span>
+                </div>
+                <p>Industrial transformation yield from raw biomass to refined high-value pigment</p>
+              </div>
+              <div class="impact-metric">
+                <div class="im-num">
+                  <span class="counter" data-target="100" data-suffix="%">0</span>
+                </div>
+                <p>Solar-powered dehydration, eliminating the carbon footprint of industrial drying</p>
+              </div>
+              <div class="impact-metric">
+                <div class="im-num">
+                  <span>Restored</span>
+                </div>
+                <p>Systematic removal prevents brown tides that destroy coral reefs and clears nesting paths for endangered sea turtles</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="impact-cat reveal-up" style="--delay:0.1s">
+            <div class="impact-cat__head">
+              <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="17" cy="17" r="15" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                <circle cx="17" cy="13" r="4"  stroke="#5CBF3A" stroke-width="1.4" fill="none"/>
+                <path d="M8 28 Q8 21 17 21 Q26 21 26 28" stroke="#5CBF3A" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              </svg>
+              <h3>Social</h3>
+            </div>
+            <div class="impact-metrics">
+              <div class="impact-metric">
+                <div class="im-num">
+                  <span>Zero</span>
+                </div>
+                <p>Toxic carcinogenic vapors for printing industry workers, replacing synthetic inks containing Cadmium Yellow</p>
+              </div>
+              <div class="impact-metric">
+                <div class="im-num">
+                  <span class="counter" data-target="11" data-suffix="K+">0</span>
+                </div>
+                <p>km of Mexican coastline addressable through our national replication model for local micro-enterprises</p>
+              </div>
+              <div class="impact-metric">
+                <div class="im-num">
+                  <span>Safe</span>
+                </div>
+                <p>Non-toxic inks for food packaging, eliminating chemical transfer risks for Mexico's growing sustainable consumer base</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="impact-cat reveal-up" style="--delay:0.15s">
+            <div class="impact-cat__head">
+              <svg viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="17" cy="17" r="15" stroke="#26A269" stroke-width="1.4" fill="none"/>
+                <path d="M17 8 L17 12 M17 22 L17 26" stroke="#5CBF3A" stroke-width="1.6" stroke-linecap="round"/>
+                <path d="M10 14 Q10 11 13 11 L21 11 Q24 11 24 14 Q24 17 17 17 Q10 17 10 20 Q10 23 13 23 L21 23 Q24 23 24 20" stroke="#5CBF3A" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+              </svg>
+              <h3>Economic</h3>
+            </div>
+            <div class="impact-metrics">
+              <div class="impact-metric">
+                <div class="im-num">
+                  <span>2nd</span>
+                </div>
+                <p>Largest cosmetic market in Latin America, growing 9–11% annually and our primary target sector</p>
+              </div>
+              <div class="impact-metric">
+                <div class="im-num">
+                  <span class="counter" data-target="13" data-suffix="B">$</span>
+                </div>
+                <p>USD in global environmental damage caused annually by traditional packaging waste</p>
+              </div>
+              <div class="impact-metric">
+                <div class="im-num">
+                  <span>10:6</span>
+                </div>
+                <p>Proprietary ratio ensuring industrial-grade adhesion and performance on sustainable substrates</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         ROADMAP
+    ═══════════════════════════════════════ -->
+    <section id="roadmap" class="section" aria-label="Roadmap">
+      <div class="container">
+        <header class="section-header reveal-up">
+          <span class="label">Our Journey</span>
+          <h2>From Research to Scale</h2>
+          <p class="section-lead">
+            Five years of rigorous scientific work have built the foundation for commercial deployment. These are the milestones that brought us here, and the steps we are taking next.
+          </p>
+        </header>
+
+        <div class="timeline" role="list">
+
+          <article class="tl-item tl-item--done reveal-up" style="--delay:0.0s" role="listitem">
+            <div class="tl-year" aria-label="Year 2020">2020</div>
+            <div class="tl-connector" aria-hidden="true"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+              <span class="tl-badge tl-badge--done">Completed</span>
+              <h3>Master's Thesis</h3>
+              <p>Academic research into sargassum biomolecular composition and pigment extraction potential, establishing the scientific foundation that became SINK.</p>
+            </div>
+          </article>
+
+          <article class="tl-item tl-item--done reveal-up" style="--delay:0.08s" role="listitem">
+            <div class="tl-year" aria-label="Year 2021">2021</div>
+            <div class="tl-connector" aria-hidden="true"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+              <span class="tl-badge tl-badge--done">Completed</span>
+              <h3>Pigment Development and Research</h3>
+              <p>First successful extraction of stable organic pigments from sargassum biomass, with full colour characterisation and accelerated stability testing.</p>
+            </div>
+          </article>
+
+          <article class="tl-item tl-item--done reveal-up" style="--delay:0.16s" role="listitem">
+            <div class="tl-year" aria-label="Year 2022">2022</div>
+            <div class="tl-connector" aria-hidden="true"><div class="tl-dot"></div></div>
+            <div class="tl-card">
+              <span class="tl-badge tl-badge--done">Completed</span>
+              <h3>Bio-Ink Formulation</h3>
+              <p>Development of water-based bio-ink systems integrating sargassum pigments with commercial-grade binders and rheological modifiers.</p>
+            </div>
+          </article>
+
+          <article class="tl-item tl-item--done reveal-up" style="--delay:0.24s" role="listitem">
+            <div class="tl-year" aria-label="Year 2026">2026</div>
+            <div class="tl-connector" aria-hidden="true"><div class="tl-dot"></div></div>
+            <div class="tl-card"><span class="tl-badge tl-badge--done">Completed</span>
+              <h3>Innovation Award</h3>
+              <p>Recognition by Mexico's Secretary of Economy at Innovafest 2026 Monterrey for scientific rigour and the commercial potential of the SINK bio-ink development pathway.</p>
+            </div>
+          </article>
+
+          <article class="tl-item tl-item--current reveal-up" style="--delay:0.32s" role="listitem">
+            <div class="tl-year" aria-label="Year 2026">2026</div>
+            <div class="tl-connector" aria-hidden="true"><div class="tl-dot tl-dot--pulse"></div></div>
+            <div class="tl-card tl-card--current"><span class="tl-badge tl-badge--current">In Progress</span>
+              <h3>Laboratory Validation</h3>
+              <p>Independent laboratory validation of bio-ink performance, food-safety profiles, and benchmarking against petroleum-based industry standards.</p>
+            </div>
+          </article>
+
+          <article class="tl-item reveal-up" style="--delay:0.4s" role="listitem">
+            <div class="tl-year" aria-label="Year 2027">2027</div>
+            <div class="tl-connector" aria-hidden="true"><div class="tl-dot tl-dot--future"></div></div>
+            <div class="tl-card"><span class="tl-badge tl-badge--future">Planned</span>
+              <h3>Pilot Production</h3>
+              <p>Seed-funded pilot facility in the Mexican Caribbean, establishing collection infrastructure and completing the first commercial-scale production run.</p>
+            </div>
+          </article>
+
+          <article class="tl-item reveal-up" style="--delay:0.48s" role="listitem">
+            <div class="tl-year" aria-label="Year 2028">2028</div>
+            <div class="tl-connector" aria-hidden="true"><div class="tl-dot tl-dot--future"></div></div>
+            <div class="tl-card">
+              <span class="tl-badge tl-badge--future">Planned</span>
+              <h3>Commercial Scale</h3>
+              <p>Series A-funded commercial production, strategic brand partnerships, and regional distribution across Latin America.</p>
+            </div>
+          </article>
+
+          <article class="tl-item reveal-up" style="--delay:0.56s" role="listitem">
+            <div class="tl-year" aria-label="Year 2028 onwards">2028+</div>
+            <div class="tl-connector" aria-hidden="true"><div class="tl-dot tl-dot--future"></div></div>
+            <div class="tl-card">
+              <span class="tl-badge tl-badge--future">Planned</span>
+              <h3>Global Expansion</h3>
+              <p>Replication of the SINK model across other sargassum-impacted regions: West Africa, Southeast Asia, and the Mediterranean.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         FOUNDER
+    ═══════════════════════════════════════ -->
+    <section id="founder" class="section section--sand" aria-label="Founder">
+      <div class="container">
+        <header class="section-header reveal-up">
+          <span class="label">Leadership</span>
+          <h2>Built by Science,<br>Led by Purpose.</h2>
+        </header>
+
+        <div class="founder-layout">
+          <div class="founder-portrait reveal-up" style="--delay:0.05s">
+            <div class="portrait-wrap">
+              <!-- Replace src with actual portrait image -->
+              <div class="portrait-placeholder" role="img" aria-label="Portrait of Eva Larraga, SINK Founder">
+                <img src="assets/images/eva-larraga.jpg" alt="Eva Larraga, Founder &amp; CEO of SINK" class="founder-photo" />
+              </div>
+              <div class="portrait-badge" aria-hidden="true">
+                <span>Founder &amp; CEO</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="founder-bio reveal-up" style="--delay:0.15s">
+            <h2 class="founder-name">Eva Larraga</h2>
+            <p class="founder-role">Product &amp; Packaging Designer · Creative Director · Climate-Tech Entrepreneur</p>
+
+            <div class="founder-tags" role="list">
+              <span class="tag" role="listitem">Master in Product &amp; Packaging Design</span>
+              <span class="tag" role="listitem">Climate-Tech Founder</span>
+              <span class="tag" role="listitem">Innovation Award Winner</span>
+            </div>
+
+            <blockquote class="founder-quote">
+              "Sargassum is not a problem to be managed. It is a resource waiting to be unlocked. SINK exists to bridge the gap between coastal environmental reality and the circular economy the packaging industry needs."
+            </blockquote>
+
+            <p class="founder-para">Eva Larraga is a Product &amp; Packaging Designer, Creative Director, and Climate-Tech entrepreneur dedicated to transforming environmental challenges into sustainable innovation. With over 10 years of experience in branding, packaging, and product development, she founded SINK, a startup developing bio-based pigments and sustainable inks from sargassum to advance circular economy solutions for the packaging industry.</p>
+
+            <p class="founder-para">Her work bridges design, material innovation, and environmental impact, proving that waste can become one of the world's most valuable resources.</p>
+
+            <a href="#contact" class="btn btn--primary" style="margin-top:2rem">Connect with Eva</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         CTA
+    ═══════════════════════════════════════ -->
+    <section id="contact" class="section cta-section" aria-label="Partnership and Contact">
+      <canvas id="ctaCanvas" aria-hidden="true"></canvas>
+      <div class="cta-glow cta-glow--1" aria-hidden="true"></div>
+      <div class="cta-glow cta-glow--2" aria-hidden="true"></div>
+
+      <div class="container cta-container">
+        <div class="cta-inner reveal-up">
+          <span class="label label--light">Work With Us</span>
+          <h2 class="cta-title">Help us transform marine waste<br>into sustainable innovation.</h2>
+          <p class="cta-lead">
+            Whether you are an investor, a brand, a research institution, or a government body, SINK is ready to build the future of sustainable packaging with you.
+          </p>
+          <div class="cta-actions">
+            <a href="mailto:eve@kreativebp.com" class="btn btn--primary btn--lg">Become a Partner</a>
+            <a href="mailto:eve@kreativebp.com" class="btn btn--outline btn--lg">Contact SINK</a>
+          </div>
+          <div class="cta-meta">
+            <span class="cta-info">
+              <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="1" y="3" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <path d="M1 6.5 L9 11 L17 6.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+              </svg>
+              eve@kreativebp.com
+            </span>
+            <span class="cta-info">
+              <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M9 1.5 C6 1.5 3 4.5 3 7.5 C3 11.5 9 16.5 9 16.5 S15 11.5 15 7.5 C15 4.5 12 1.5 9 1.5Z" stroke="currentColor" stroke-width="1.3" fill="none"/>
+                <circle cx="9" cy="7.5" r="2.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+              </svg>
+              Monterrey,Nuevo Leòn, México
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#hero" class="footer-wordmark" aria-label="SINK — Back to top">SINK</a>
+        <p class="footer-tagline">Powered by Nature. Driven by Circularity.</p>
+        <p class="footer-mission">Transforming invasive sargassum from the Mexican Caribbean into sustainable bio-pigments and circular materials for the packaging industry.</p>
+        <div class="footer-socials">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="SINK on LinkedIn" class="social-link">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1.5" y="1.5" width="17" height="17" rx="3.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+              <path d="M5 8.5 L5 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              <circle cx="5" cy="6" r="1" fill="currentColor"/>
+              <path d="M8.5 8.5 L8.5 14.5 M8.5 11 Q8.5 8.5 11 8.5 Q13.5 8.5 13.5 11 L13.5 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            LinkedIn
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="SINK on Instagram" class="social-link">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1.5" y="1.5" width="17" height="17" rx="4.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+              <circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+              <circle cx="14.5" cy="5.5" r="1" fill="currentColor"/>
+            </svg>
+            Instagram
+          </a>
+          <a href="mailto:eve@kreativebp.com" class="social-link" aria-label="Email SINK">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1.5" y="4" width="17" height="12" rx="2.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
+              <path d="M1.5 7 L10 12 L18.5 7" stroke="currentColor" stroke-width="1.3" fill="none"/>
+            </svg>
+            Email
+          </a>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul role="list">
+            <li><a href="#problem">The Problem</a></li>
+            <li><a href="#solution">Our Solution</a></li>
+            <li><a href="#technology">Technology</a></li>
+            <li><a href="#applications">Applications</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#founder">Founder</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get Involved</h4>
+          <ul role="list">
+            <li><a href="#contact">Partner With Us</a></li>
+            <li><a href="#contact">Investor Relations</a></li>
+            <li><a href="mailto:eve@kreativebp.com">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="copyright">&copy; 2026 SINK. All rights reserved.</p>
+        <div class="legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
